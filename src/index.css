@@ -1,0 +1,413 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: #0a0a0a;
+  color: #00ff00;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  border-bottom: 2px solid #00ff00;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.stat-card {
+  border: 2px solid #00ff00;
+  padding: 12px;
+  background: #0f0f0f;
+}
+
+.stat-label {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Buttons */
+button {
+  font-family: 'Courier New', Courier, monospace;
+  background: #0a0a0a;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  min-height: 44px;
+}
+
+button:hover {
+  background: #00ff00;
+  color: #0a0a0a;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background: #0a0a0a;
+  color: #00ff00;
+}
+
+/* Today's Workout */
+.todays-workout {
+  text-align: center;
+  margin: 15px 0;
+  padding: 15px;
+  border: 2px solid #00ff00;
+  background: #0f0f0f;
+}
+
+.todays-workout h2 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+/* Calendar */
+.calendar {
+  margin-top: 15px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #00ff00;
+}
+
+.calendar-header h2 {
+  font-size: 16px;
+}
+
+.calendar-header button {
+  padding: 8px 16px;
+  min-height: 36px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.calendar-day-header {
+  text-align: center;
+  padding: 5px 1px;
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  border: 1px solid #00ff00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  background: #0f0f0f;
+  transition: all 0.2s;
+  min-height: 48px;
+  padding: 1px;
+}
+
+.calendar-day:hover {
+  background: #1a1a1a;
+}
+
+.calendar-day.other-month {
+  opacity: 0.3;
+}
+
+.calendar-day.today {
+  border: 2px solid #00ff00;
+  background: #0a0a0a;
+}
+
+.calendar-day.completed {
+  background: #003300;
+}
+
+.calendar-day.partial {
+  background: linear-gradient(135deg, #003300 0%, #003300 50%, #0f0f0f 50%, #0f0f0f 100%);
+}
+
+.day-number {
+  font-size: 13px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.day-workout {
+  font-size: 6.5px;
+  opacity: 0.8;
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* Workout View */
+.workout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #00ff00;
+}
+
+.workout-header h1 {
+  font-size: 16px;
+}
+
+.workout-header button {
+  padding: 8px 12px;
+  min-height: 36px;
+}
+
+/* Sticky Timer and Progress Bar */
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  background: #0a0a0a;
+  z-index: 100;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00ff00;
+}
+
+.timer-progress {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.timer-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.timer-display {
+  font-size: 20px;
+  font-weight: bold;
+  min-width: 60px;
+}
+
+.progress-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 8px;
+  background: #0f0f0f;
+  border: 1px solid #00ff00;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #00ff00;
+  transition: width 0.3s;
+}
+
+.progress-text {
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 40px;
+}
+
+/* Exercise */
+.exercise {
+  margin-bottom: 20px;
+  border: 1px solid #00ff00;
+  padding: 12px;
+  background: #0f0f0f;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.exercise-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.exercise-info {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.sets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.set-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 8px;
+  border: 1px solid #00ff00;
+  background: #0a0a0a;
+  flex-wrap: wrap;
+}
+
+.set-row.completed {
+  background: #003300;
+  opacity: 0.8;
+}
+
+.set-checkbox {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #00ff00;
+  background: #0a0a0a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.set-checkbox.checked {
+  background: #00ff00;
+}
+
+.set-checkbox.checked::after {
+  content: '✓';
+  color: #0a0a0a;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.set-label {
+  min-width: 45px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.set-reps {
+  min-width: 65px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.weight-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.weight-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  flex-shrink: 0;
+}
+
+.weight-display {
+  min-width: 50px;
+  max-width: 50px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.complete-workout-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.export-btn {
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 350px) {
+  .header h1 {
+    font-size: 16px;
+  }
+  
+  .stat-value {
+    font-size: 24px;
+  }
+  
+  .day-workout {
+    font-size: 7px;
+  }
+  
+  .timer-display {
+    font-size: 18px;
+  }
+}
